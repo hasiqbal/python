@@ -1,25 +1,33 @@
-# add a match case block
-
+ 
 user_prompt = "Type add, view, edit, complete or exit: "
 name_prompt = "Enter your name:"
 edit_prompt =  "Number of item in list to edit?:"
 new_name = "What is the new name>:"
 remove_name = "Which number name to remove?:"
 
-names = []
+
 while True:
     name = input(user_prompt)
     name = name.strip()
 
     match name:
         case 'add':
-            name = input(name_prompt)
+            name = input(name_prompt) + "\n"
+            file = open('name-list-app/day6/names.txt','r')
+            names = file.readlines()
             names.append(name)
-        case 'view':
-            for index,items in enumerate(names):
-                index = index + 1
-                row =  f"{index}-{items}"
+            file = open('name-list-app/day6/names.txt', 'w')
+            file.writelines(names)
+            
+        case 'show':
+            file = open('name-list-app/day6/names.txt','r')
+            names = file.readlines()
+            file.close()
+
+            for index, item in enumerate(names):
+                row = f"{index+1} -{item}"
                 print(row)
+       
         case 'edit':
             edit_number = int(input(edit_prompt))
             edit_number = edit_number - 1
@@ -29,6 +37,7 @@ while True:
             for item in names:
                 number_in_list = int(input(remove_name)) - 1
                 names.pop(number_in_list)
+                
         case 'exit':
             break
 
