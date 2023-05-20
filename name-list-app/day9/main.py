@@ -53,6 +53,7 @@ while True:
 
             with open('names.txt', 'r') as file:
                 names = file.readlines()
+
                 names = [name.strip('\n') for name in names]
 
             index = (number_in_list - 1)
